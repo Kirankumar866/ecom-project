@@ -1,6 +1,7 @@
 package com.kiran.ecom_proj.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,10 +25,19 @@ public class Product {
  private BigDecimal price;
  private String category;
 
-// @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "MM-dd-yyyy")
+ @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "MM-dd-yyyy")
  private Date releaseDate;
- private boolean available;
- private String quantity;
+ private boolean productAvailable;
+
+ private String stockQuantity;
+
+ public String getStockQuantity() {
+  return stockQuantity;
+ }
+
+ public void setStockQuantity(String stockQuantity) {
+  this.stockQuantity = stockQuantity;
+ }
 
  private String imageName;
  private String imageType;
@@ -103,20 +113,12 @@ public class Product {
   this.releaseDate = releaseDate;
  }
 
- public boolean isAvailable() {
-  return available;
+ public boolean isProductAvailable() {
+  return productAvailable;
  }
 
- public void setAvailable(boolean available) {
-  this.available = available;
- }
-
- public String getQuantity() {
-  return quantity;
- }
-
- public void setQuantity(String quantity) {
-  this.quantity = quantity;
+ public void setProductAvailable(boolean productAvailable) {
+  this.productAvailable = productAvailable;
  }
 
  public void setImageDate(byte[] imageDate) {
